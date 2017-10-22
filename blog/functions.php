@@ -1,6 +1,6 @@
 <?php
 
-require_once('config_db.php');
+require_once('config.php');
 /**
  * Created by PhpStorm.
  * User: Администратор
@@ -12,7 +12,7 @@ function uploadImg($field){
         return false;
     }
     if(is_uploaded_file($_FILES[$field]['tmp_name'])){
-        $res = move_uploaded_file($_FILES[$field]['tmp_name'], 'img/'. $_FILES[$field]['name']);
+        $res = move_uploaded_file($_FILES[$field]['tmp_name'], '../img/'. $_FILES[$field]['name']);
         if(!$res){
             return false;
         }else{
@@ -68,7 +68,7 @@ function add_post($link, $title, $content, $preview, $img){
 }
 
 function show_posts($link){
-    $sql = "SELECT title, content, preview, img from articles";
+    $sql = "SELECT id, title, content, preview, img from articles";
     $result = mysqli_query($link, $sql);
 
     $posts = [];
@@ -76,4 +76,19 @@ function show_posts($link){
         $posts[] = $row;
     }
     return $posts;
+}
+
+function delete_post($link, $id){
+    $sql = "DELETE FROM articles WHERE id = ?";
+    $stmt = mysqli_prepare($link, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function navigation (array $arr){
+    foreach($arr as $key => $value){
+        echo "<ul class='navbar-nav'>
+                <li class='nav-item'><a class='nav-link' href=$key>$value</a></li>";
+    }
 }

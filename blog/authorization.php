@@ -31,7 +31,7 @@ ini_set('locale', 'UTF-8');
 <body>
 <div class="wrapper">
 
-    <form class="form-horizontal" method="POST" action="admin.php">
+    <form class="form-horizontal" method="POST" action="admin/admin.php">
         <div class="form-group">
             <label class="control-label col-sm-2" for="login">Login:</label>
             <div class="col-sm-10">

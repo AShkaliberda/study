@@ -39,3 +39,8 @@ body {
 .wrapper label {
     min-width:300px;
 }
+
+.table thead th, .table th {
+    text-align: center;
+}
+
