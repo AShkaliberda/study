@@ -71,7 +71,7 @@ function show_posts($link){
     $sql = "SELECT id, title, content, preview, img from articles";
     $result = mysqli_query($link, $sql);
 
-    $posts = [];
+    $posts = array();
     while ($row = mysqli_fetch_assoc($result)) {
         $posts[] = $row;
     }
@@ -91,4 +91,23 @@ function navigation (array $arr){
         echo "<ul class='navbar-nav'>
                 <li class='nav-item'><a class='nav-link' href=$key>$value</a></li>";
     }
+}
+
+function edit_post($link, $id, $title, $content, $preview){
+    $sql = "UPDATE FROM articles WHERE id = ? title = ? content = ? preview = ?";
+    $stmt = mysqli_prepare($link, $sql);
+    mysqli_stmt_bind_param($stmt, 'isss', $id, $title, $content, $preview);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function select_data($link, $id){
+    $sql = "SELECT id, title, content, preview, img FROM articles WHERE id=$id";
+    $result = mysqli_query($link, $sql);
+
+    $data = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    return $data;
 }

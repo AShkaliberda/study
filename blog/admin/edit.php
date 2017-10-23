@@ -1,19 +1,27 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Dima
+ * Date: 23.10.2017
+ * Time: 12:31
+ */
 if($_SERVER['REQUEST_METHOD'] === 'POST'):
     session_start();
-
     require_once('../functions.php');
     $db = db_connect();
 
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $preview = $_POST['preview'];
-    $preview = readMore($preview);
-    $img = uploadImg('img');
+    if(!empty($_POST['id'])):
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $preview = $_POST['preview'];
+        var_dump($_POST); die;
+    endif;
 
-    add_post($db, $title, $content, $preview, $img);
-    header('Location:admin.php');
+    if(!empty($_POST['edit'])):
+        $id = (int)$_POST['edit'];
+        $changes = select_data($db, $id);
+    endif;
+
 endif;
 ?>
 
@@ -58,17 +66,18 @@ endif;
     </div>
 </nav>
 <div class="wrapper">
-<form class="form-horizontal" method="POST" action="add_post.php" enctype="multipart/form-data">
+    <?php foreach($changes as $change): ?>
+<form class="form-horizontal" method="POST" action="edit.php" enctype="multipart/form-data">
     <div class="form-group">
         <label class="control-label col-sm-2" for="title">Заголовок:</label>
         <div class="col-sm-10">
-            <input name="title" type="text" class="form-control" id="title" required>
+            <input name="title" type="text" class="form-control" id="title" value="<?=$change['title']; ?>">
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-sm-2" for="content">Додати пост:</label>
         <div class="col-sm-10">
-            <textarea name="content" cols="50" rows="10" id="editor1" name="editor1"></textarea>
+            <textarea name="content" cols="50" rows="10" id="editor1" name="editor1"><?= $change['content']; ?></textarea>
             <script>
 CKEDITOR.replace( 'editor1' );
             </script>
@@ -77,7 +86,7 @@ CKEDITOR.replace( 'editor1' );
     <div class="form-group">
         <label class="control-label col-sm-2" for="preview">Короткий опис:</label>
         <div class="col-sm-10">
-            <textarea name="preview" rows="3" id="preview" class="form-control"></textarea>
+            <textarea name="preview" rows="3" id="preview" class="form-control"><?= $change['preview']; ?></textarea>
         </div>
     </div>
     <div class="form-group">
@@ -87,8 +96,9 @@ CKEDITOR.replace( 'editor1' );
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submit" name="id" value="<?= $change['id']; ?>">Зберегти зміни</button>
         </div>
     </div>
     </form>
 </div>
+<?php endforeach; ?>
