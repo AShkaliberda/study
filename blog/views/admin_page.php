@@ -23,7 +23,7 @@ $posts = show_posts($db);?>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Сторінка адміна</a>
+        <a class="navbar-brand" href="../index.php">На головну</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +33,7 @@ $posts = show_posts($db);?>
                     <a class="nav-link" href="add_post.php">Додати запис</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="add_post.php">Вийти</a>
+                    <a class="nav-link" href="admin.php?action=logout">Вийти</a>
                 </li>
             </ul>
         </div>
