@@ -10,6 +10,12 @@ if($_SESSION['name'] === 'admin'):
         header("Location:../index.php");
     endif;
 
+    if(!empty($_GET['id'])):
+        $articles = select_data($db, (int)$_GET['id']);
+        include('../views/single.php');
+        exit;
+    endif;
+
     if(!empty($_POST['edit'])):
         $changes = select_data($db, (int)$_POST['edit']);
         include('../views/edit.php');
@@ -36,6 +42,12 @@ elseif (validation($db)):
     $_SESSION['name'] = 'admin';
     include('../views/admin_page.php');
     exit;
+
+elseif(!empty($_GET['id'])):
+    $articles = select_data($db, (int)$_GET['id']);
+    include('../views/single.php');
+    exit;
+
 else:
     header('Location:../authorization.php');
 endif;

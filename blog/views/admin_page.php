@@ -1,5 +1,4 @@
-<?php
-$posts = show_posts($db);?>
+<?php $posts = show_posts($db); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +66,7 @@ $posts = show_posts($db);?>
                             </div>
                         </form>
                     </td>
-                    <td><form class="form-horizontal" method="POST" action="delete.php">
+                    <td><form class="form-horizontal" method="POST" action="admin.php">
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary" id="submit" name="delete" value="<?=$post['id'];?>">Видалити</button>
