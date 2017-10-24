@@ -1,6 +1,5 @@
 <?php
-$link = db_connect();
-$posts = show_posts($link);?>
+$posts = show_posts($db);?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +59,7 @@ $posts = show_posts($link);?>
                     <th scope="row"><?=$post['id'];?></th>
                     <td><?= $post['title']; ?></td>
                     <td>
-                        <form class="form-horizontal" method="POST" action="edit.php">
+                        <form class="form-horizontal" method="POST" action="../admin/admin.php">
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary" id="submit" name="edit" value="<?=$post['id'];?>">Редагувати</button>

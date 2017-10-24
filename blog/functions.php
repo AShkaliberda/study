@@ -93,10 +93,10 @@ function navigation (array $arr){
     }
 }
 
-function edit_post($link, $id, $title, $content, $preview){
-    $sql = "UPDATE FROM articles WHERE id = ? title = ? content = ? preview = ?";
+function edit_post($link, $title, $content, $preview, $id){
+    $sql = "UPDATE articles SET title = ?, content = ?, preview = ? WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);
-    mysqli_stmt_bind_param($stmt, 'isss', $id, $title, $content, $preview);
+    mysqli_stmt_bind_param($stmt, 'sssi', $title, $content, $preview, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }

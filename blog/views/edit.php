@@ -1,29 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Dima
- * Date: 23.10.2017
- * Time: 12:31
- */
-if($_SERVER['REQUEST_METHOD'] === 'POST'):
-    session_start();
-    require_once('../functions.php');
-    $db = db_connect();
-
-    if(!empty($_POST['id'])):
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-        $preview = $_POST['preview'];
-        var_dump($_POST); die;
-    endif;
-
-    if(!empty($_POST['edit'])):
-        $id = (int)$_POST['edit'];
-        $changes = select_data($db, $id);
-    endif;
-
-endif;
-?>
+<?php ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +10,7 @@ endif;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Сторінка адміна</title>
+    <title>Редагувати публікацію</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,18 +31,18 @@ endif;
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="add_post.php">Додати запис</a>
+                    <a class="nav-link" href="../admin/add_post.php">Додати запис</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="add_post.php">Вийти</a>
+                    <a class="nav-link" href="../admin/add_post.php">Вийти</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <div class="wrapper">
-    <?php foreach($changes as $change): ?>
-<form class="form-horizontal" method="POST" action="edit.php" enctype="multipart/form-data">
+    <?php foreach($changes as $change):; ?>
+<form class="form-horizontal" method="POST" action="../admin/admin.php" enctype="multipart/form-data">
     <div class="form-group">
         <label class="control-label col-sm-2" for="title">Заголовок:</label>
         <div class="col-sm-10">
