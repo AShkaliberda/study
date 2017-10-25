@@ -29,7 +29,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <?php
-            $menu = [ "../authorization.php"=>"Авторизація"];
+            $menu = [ "authorization.php"=>"Авторизація"];
             navigation($menu);
             ?>
         </div>
@@ -61,7 +61,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-fluid rounded" src="<?='../'.$article['img']; ?>" alt="">
+            <img class="img-fluid rounded" src="<?=$article['img']; ?>" alt="">
 
             <hr>
 

@@ -3,17 +3,11 @@ session_start();
 require_once('../functions.php');
 $db = db_connect();
 
-if($_SESSION['name'] === 'admin'):
+if($_SESSION['name'] === 'admin' && validation($db) === 'admin'):
 
     if($_GET['action'] === 'logout'):
         session_destroy();
         header("Location:../index.php");
-    endif;
-
-    if(!empty($_GET['id'])):
-        $articles = select_data($db, (int)$_GET['id']);
-        include('../views/single.php');
-        exit;
     endif;
 
     if(!empty($_POST['edit'])):
@@ -23,10 +17,7 @@ if($_SESSION['name'] === 'admin'):
     endif;
 
     if(!empty($_POST['id'])):
-        if(!empty($_FILES['img'])):
-            $img = uploadImg('img');
-        endif;
-        edit_post($db, $_POST['title'], $_POST['content'], $_POST['preview'], $img, (int)$_POST['id']);
+        edit_post($db, $_POST['title'], $_POST['content'], $_POST['preview'], (int)$_POST['id']);
         include('../views/admin_page.php');
         exit;
     endif;
@@ -38,14 +29,14 @@ if($_SESSION['name'] === 'admin'):
 
     include('../views/admin_page.php');
 
-elseif (validation($db)):
+elseif(validation($db) === 'admin'):
     $_SESSION['name'] = 'admin';
     include('../views/admin_page.php');
     exit;
 
-elseif(!empty($_GET['id'])):
-    $articles = select_data($db, (int)$_GET['id']);
-    include('../views/single.php');
+elseif(validation($db) === 'user'):
+    $_SESSION['name'] = 'user';
+    echo "User";
     exit;
 
 else:

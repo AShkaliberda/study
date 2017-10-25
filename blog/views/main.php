@@ -6,11 +6,11 @@
         <?php foreach ($posts as $post):?>
             <!-- Blog Post -->
             <div class="card mb-4">
-                <a href="admin/admin.php?id=<?= $post['id']; ?>"><img class="card-img-top" src="<?=$post['img']; ?>" alt="Card image cap" width="750px" height="300px"></a>
+                <a href="index.php?id=<?= $post['id']; ?>"><img class="card-img-top" src="<?=$post['img']; ?>" alt="Card image cap" width="750px" height="300px"></a>
                 <div class="card-body">
                     <h2 class="card-title"><?=$post['title'] ?></h2>
                     <p class="card-text"><?=$post['preview']; ?></p>
-                    <a href="admin/admin.php?id=<?= $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="index.php?id=<?= $post['id']; ?>" class="btn btn-primary">Read More &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Posted on January 1, 2017 by
