@@ -3,7 +3,7 @@ session_start();
 require_once('../functions.php');
 $db = db_connect();
 
-if($_SESSION['name'] === 'admin' && validation($db) === 'admin'):
+if($_SESSION['name'] === 'admin'):
 
     if($_GET['action'] === 'logout'):
         session_destroy();
@@ -17,7 +17,10 @@ if($_SESSION['name'] === 'admin' && validation($db) === 'admin'):
     endif;
 
     if(!empty($_POST['id'])):
-        edit_post($db, $_POST['title'], $_POST['content'], $_POST['preview'], (int)$_POST['id']);
+            if(!empty($_FILES)):
+                $img = uploadImg('img');
+            endif;
+        edit_post($db, $_POST['title'], $_POST['content'], $_POST['preview'], $img, (int)$_POST['id']);
         include('../views/admin_page.php');
         exit;
     endif;
@@ -29,17 +32,5 @@ if($_SESSION['name'] === 'admin' && validation($db) === 'admin'):
 
     include('../views/admin_page.php');
 
-elseif(validation($db) === 'admin'):
-    $_SESSION['name'] = 'admin';
-    include('../views/admin_page.php');
-    exit;
-
-elseif(validation($db) === 'user'):
-    $_SESSION['name'] = 'user';
-    echo "User";
-    exit;
-
-else:
-    header('Location:../authorization.php');
 endif;
 ?>

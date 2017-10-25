@@ -34,8 +34,8 @@ function db_connect(){
     return $link;
 }
 
-function validation($link)
-{
+function validation($link) {
+
     $user_login = trim(htmlspecialchars($_POST['login']));
     $user_password = trim(htmlspecialchars($_POST['pass']));
     $user_password = md5($user_password);
@@ -43,25 +43,21 @@ function validation($link)
     $sql = "SELECT login, password, role FROM users";
     $result = mysqli_query($link, $sql);
 
+    if(mysqli_num_rows($result) === 0){
+        return false;
+    }
+
+    $rows = array();
+
         while ($row = mysqli_fetch_assoc($result)) {
-            if($row['role'] === 'admin'):
-                $admin_login = $row['login'];
-                $admin_pass = $row['password'];
-            endif;
-        $login = $row['login'];
-        $pass = $row['password'];
-        $role = $row['role'];
+            $rows[] = $row;
         }
 
-
-
-    if ($user_login === $admin_login && $user_password === $admin_pass):
-        return 'admin';
-    elseif($user_login === $login && $user_password === $pass):
-        return 'user';
-    else:
-        return false;
-    endif;
+    foreach($rows as $row){
+        if($user_login === $row['login'] && $user_password === $row['password']){
+            return $row['role'];
+        }
+    }
 }
 
 function readMore($text, $len=200){
@@ -102,10 +98,10 @@ function navigation (array $arr){
     }
 }
 
-function edit_post($link, $title, $content, $preview, $id){
-    $sql = "UPDATE articles SET title = ?, content = ?, preview = ? WHERE id = ?";
+function edit_post($link, $title, $content, $preview, $img, $id){
+    $sql = "UPDATE articles SET title = ?, content = ?, preview = ?, img=? WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);
-    mysqli_stmt_bind_param($stmt, 'ssssi', $title, $content, $preview, $id);
+    mysqli_stmt_bind_param($stmt, 'ssssi', $title, $content, $preview, $img, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
