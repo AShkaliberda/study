@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once('menu.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,15 +27,12 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="../index.php">Головна</a>
+        <a class="navbar-brand" href="index.php">Головна</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <?php
-            $menu = [ "authorization.php"=>"Авторизація"];
-            navigation($menu);
-            ?>
+            <?php navigation($menu); ?>
         </div>
     </div>
 </nav>
@@ -71,45 +72,19 @@
             <hr>
 
             <!-- Comments Form -->
-
-            <!-- Кнопка пуска модальное окно -->
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                Додати коментар:
-            </button>
-
-            <!-- Модальное окно -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <?php if(isset($_SESSION['name'])): ?>
+            <div class="card my-4">
+                <h5 class="card-header">Додати коментар:</h5>
+                <div class="card-body">
+                    <form method="POST" action="admin/admin.php">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="comment"></textarea>
                         </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Залишити коментар</button>
+                    </form>
                 </div>
             </div>
-
-
-<!--            <div class="card my-4">-->
-<!--                <h5 class="card-header">Залишити коментар:</h5>-->
-<!--                <div class="card-body">-->
-<!--                    <form method="POST" action="admin/admin.php">-->
-<!--                        <div class="form-group">-->
-<!--                            <textarea class="form-control" rows="3" name="comment"></textarea>-->
-<!--                        </div>-->
-<!--                        <button type="submit" class="btn btn-primary" name="author" value="--><?//=$_SESSION['login']; ?><!--">Submit</button>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
+            <?php endif; ?>
         </div>
 
         <!-- Sidebar Widgets Column -->

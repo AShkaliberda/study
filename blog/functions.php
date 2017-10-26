@@ -40,7 +40,7 @@ function validation($link) {
     $user_password = trim(htmlspecialchars($_POST['pass']));
     $user_password = md5($user_password);
 
-    $sql = "SELECT login, password, role FROM users";
+    $sql = "SELECT id, login, password, role FROM users";
     $result = mysqli_query($link, $sql);
 
     if(mysqli_num_rows($result) === 0){

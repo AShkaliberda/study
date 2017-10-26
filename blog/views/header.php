@@ -29,10 +29,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <?php
-            $menu = [ "authorization.php"=>"Авторизація"];
-            navigation($menu);
-            ?>
+            <?php navigation($menu); ?>
         </div>
     </div>
 </nav>

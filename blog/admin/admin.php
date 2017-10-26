@@ -3,12 +3,13 @@ session_start();
 require_once('../functions.php');
 $db = db_connect();
 
-if($_SESSION['name'] === 'admin'):
 
-    if($_GET['action'] === 'logout'):
-        session_destroy();
-        header("Location:../index.php");
-    endif;
+if($_GET['action'] === 'logout'):
+    session_destroy();
+    header("Location:../index.php");
+endif;
+
+if($_SESSION['name'] === 'admin'):
 
     if(!empty($_POST['edit'])):
         $changes = select_data($db, (int)$_POST['edit']);

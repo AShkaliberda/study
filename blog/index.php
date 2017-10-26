@@ -1,5 +1,8 @@
 <?php
+session_start();
 require_once('functions.php');
+require_once('menu.php');
+
 $link = db_connect();
 $posts = show_posts($link);
 
