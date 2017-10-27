@@ -40,7 +40,7 @@ function validation($link) {
     $password = trim(htmlspecialchars($_POST['pass']));
     $password = md5($password);
 
-    $sql = "SELECT id, login, password, role FROM users WHERE login = '$login'";
+    $sql = "SELECT `id`, `login`, `password`, `role` FROM users WHERE `login` = '$login'";
     $result = mysqli_query($link, $sql);
 
     if(mysqli_num_rows($result) === 0){
@@ -56,6 +56,7 @@ function validation($link) {
     foreach($rows as $row){
         if($login === $row['login'] && $password === $row['password']){
             $_SESSION['id'] = (int)$row['id'];
+            $_SESSION['login'] = $row['login'];
             return $row['role'];
         }
     }
@@ -66,7 +67,7 @@ function readMore($text, $len=200){
 }
 
 function add_post($link, $title, $content, $preview, $img){
-    $sql = 'INSERT INTO articles(title, content, preview, img) VALUES(?,?,?,?)';
+    $sql = 'INSERT INTO articles(`title`, `content`, `preview`, `img`) VALUES(?,?,?,?)';
     $stmt = mysqli_prepare($link, $sql);
     mysqli_stmt_bind_param($stmt, 'ssss', $title, $content, $preview, $img);
     mysqli_stmt_execute($stmt);
@@ -74,7 +75,7 @@ function add_post($link, $title, $content, $preview, $img){
 }
 
 function show_posts($link){
-    $sql = "SELECT id, title, content, preview, img from articles";
+    $sql = "SELECT `id`, `title`, `content`, `preview`, `img` from articles";
     $result = mysqli_query($link, $sql);
 
     $posts = array();
@@ -100,7 +101,7 @@ function navigation (array $arr){
 }
 
 function edit_post($link, $title, $content, $preview, $img, $id){
-    $sql = "UPDATE articles SET title = ?, content = ?, preview = ?, img=? WHERE id = ?";
+    $sql = "UPDATE articles SET `title` = ?, `content` = ?, `preview` = ?, `img`=? WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);
     mysqli_stmt_bind_param($stmt, 'ssssi', $title, $content, $preview, $img, $id);
     mysqli_stmt_execute($stmt);
@@ -108,7 +109,7 @@ function edit_post($link, $title, $content, $preview, $img, $id){
 }
 
 function select_data($link, $id){
-    $sql = "SELECT id, title, content, preview, img FROM articles WHERE id=$id";
+    $sql = "SELECT `id`, `title`, `content`, `preview`, `img` FROM articles WHERE id=$id";
     $result = mysqli_query($link, $sql);
 
     $data = array();
@@ -117,3 +118,27 @@ function select_data($link, $id){
     }
     return $data;
 }
+
+function addComment($link, $comment){
+    $article_id = (int)$_POST['article_id'];
+    $user_id = $_SESSION['id'];
+    $author = $_SESSION['login'];
+
+    $sql = 'INSERT INTO comments(`article_id`, `user_id`, `comment`, `author`) VALUES(?,?,?,?)';
+    $stmt = mysqli_prepare($link, $sql);
+    mysqli_stmt_bind_param($stmt, 'iiss', $article_id, $user_id, $comment, $author);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function getComments($link){
+    $sql = "SELECT `author`, `comment` from comments";
+    $result = mysqli_query($link, $sql);
+
+    $comments = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $comments[] = $row;
+    }
+    return $comments;
+}
+

@@ -13,11 +13,11 @@ $checkUser = validation($db);
 
     if($checkUser === 'admin'):
         $_SESSION['name'] = 'admin';
-        header('Location:admin/admin.php');
+        header('Location:index.php');
 
     elseif($checkUser === 'user'):
         $_SESSION['name'] = 'user';
-        header("Location:views/user_page.php");
+        header("Location:index.php");
     else:
         header('Location:authorization.php');
     endif;

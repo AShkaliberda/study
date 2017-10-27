@@ -1,7 +1,3 @@
-<?php
-session_start();
-require_once('menu.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,17 +66,26 @@ require_once('menu.php');
             <p><?=$article['content']; ?></p>
 
             <hr>
-
+        <?php endforeach; ?>
             <!-- Comments Form -->
+            <div class="card-body">
+                <h5 class="card-header">Коментарі</h5>
+            <?php foreach($reviews as $review):
+                echo $review['author'];
+                echo "<br>";
+                echo $review['comment'];
+            endforeach; ?>
+            </div>
+
             <?php if(isset($_SESSION['name'])): ?>
             <div class="card my-4">
                 <h5 class="card-header">Додати коментар:</h5>
                 <div class="card-body">
-                    <form method="POST" action="admin/admin.php">
+                    <form method="POST" action="admin/add_comment.php">
                         <div class="form-group">
                             <textarea class="form-control" rows="3" name="comment"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Залишити коментар</button>
+                        <button type="submit" class="btn btn-primary" name="article_id" value="<?=$article['id']; ?>">Залишити коментар</button>
                     </form>
                 </div>
             </div>

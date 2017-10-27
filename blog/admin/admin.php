@@ -18,6 +18,7 @@ if($_SESSION['name'] === 'admin'):
     endif;
 
     if(!empty($_POST['id'])):
+        $img = $_POST['image'];
             if(!empty($_FILES)):
                 $img = uploadImg('img');
             endif;
