@@ -36,11 +36,11 @@ function db_connect(){
 
 function validation($link) {
 
-    $user_login = trim(htmlspecialchars($_POST['login']));
-    $user_password = trim(htmlspecialchars($_POST['pass']));
-    $user_password = md5($user_password);
+    $login = trim(htmlspecialchars($_POST['login']));
+    $password = trim(htmlspecialchars($_POST['pass']));
+    $password = md5($password);
 
-    $sql = "SELECT id, login, password, role FROM users";
+    $sql = "SELECT id, login, password, role FROM users WHERE login = '$login'";
     $result = mysqli_query($link, $sql);
 
     if(mysqli_num_rows($result) === 0){
@@ -54,7 +54,8 @@ function validation($link) {
         }
 
     foreach($rows as $row){
-        if($user_login === $row['login'] && $user_password === $row['password']){
+        if($login === $row['login'] && $password === $row['password']){
+            $_SESSION['id'] = (int)$row['id'];
             return $row['role'];
         }
     }
