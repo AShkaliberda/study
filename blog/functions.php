@@ -141,4 +141,27 @@ function getCommentsForArticle($link, $id){
     return $comments;
 }
 
+function deleteComment($link, $id) {
+    $sql = "DELETE FROM comments WHERE id = ?";
+    $stmt = mysqli_prepare($link, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
 
+function getComment($link, $id){
+    $sql = "SELECT `comment` FROM comments WHERE id=$id";
+    $result = mysqli_query($link, $sql);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        return $row['comment'];
+    }
+}
+
+function editComment($link, $id, $comment){
+    $sql = "UPDATE comments SET `comment` = ? WHERE id = $id";
+    $stmt = mysqli_prepare($link, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $comment);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}

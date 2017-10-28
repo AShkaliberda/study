@@ -13,4 +13,5 @@ $comment = trim(htmlspecialchars($_POST['comment']));
 $article_id = (int)$_POST['id'];
 
 addComment($db, $article_id, $comment);
-header("Location:../single.php?id=$article_id");
+header("Location: ".$_SERVER['HTTP_REFERER']);
+//header("Location:../single.php?id=$article_id");

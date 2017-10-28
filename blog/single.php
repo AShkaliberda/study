@@ -75,8 +75,8 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
                 echo $review['comment'];
                 echo "<br>";
                 if($review['author'] === $_SESSION['login']){
-                    echo "<a href='#?comment_id=$review[id]'>Редагувати</a>";
-                    echo "<a href='#?comment_id=$review[id]'>Видалити</a>";
+                    echo "<a href='admin/edit_comment.php?id=$review[id]'>Редагувати</a>";
+                    echo "<a href='admin/delete_comment.php?id=$review[id]'>Видалити</a>";
                     echo "<br>";
                 }
 
