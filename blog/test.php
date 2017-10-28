@@ -5,17 +5,11 @@
  * Date: 22.10.2017
  * Time: 21:41
  */
-
+session_start();
 require_once('functions.php');
 $db = db_connect();
+echo $_SESSION['login'];
 
-$reviews = getCommentsForArticle($db, 24);
+echo (checkAuthor($db, 24));
 
 
-var_dump($reviews);
-
-foreach($reviews as $review):
-    echo $review['author'];
-    echo "<br>";
-    echo $review['comment'];
-endforeach;
