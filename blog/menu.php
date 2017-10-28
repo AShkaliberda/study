@@ -6,7 +6,7 @@
  * Time: 20:17
  */
 
-$menu = [];
+$menu = array();
 
 if($_SESSION['name']=== 'admin'):
     $menu['admin/admin.php'] = 'В адмінку';

@@ -131,8 +131,12 @@ function addComment($link, $article_id, $comment){
 }
 
 function getCommentsForArticle($link, $id){
-    $sql = "SELECT `author`, `comment` from comments WHERE `id`=$id";
+    $sql = "SELECT `author`, `comment` FROM comments WHERE `article_id`=$id";
     $result = mysqli_query($link, $sql);
+
+    if(!$result){
+        return "Все плохо";
+    }
 
     $comments = array();
     while ($row = mysqli_fetch_assoc($result)) {

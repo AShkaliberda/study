@@ -9,7 +9,13 @@
 require_once('functions.php');
 $db = db_connect();
 
-if(!empty($_POST['delete'])):
-    $id = (int)$_POST['delete'];
-    delete_post($db, $id);
-endif;
+$reviews = getCommentsForArticle($db, 24);
+
+
+var_dump($reviews);
+
+foreach($reviews as $review):
+    echo $review['author'];
+    echo "<br>";
+    echo $review['comment'];
+endforeach;
