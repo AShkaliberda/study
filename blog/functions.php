@@ -119,8 +119,7 @@ function select_data($link, $id){
     return $data;
 }
 
-function addComment($link, $comment){
-    $article_id = (int)$_POST['article_id'];
+function addComment($link, $article_id, $comment){
     $user_id = $_SESSION['id'];
     $author = $_SESSION['login'];
 
@@ -131,8 +130,8 @@ function addComment($link, $comment){
     mysqli_stmt_close($stmt);
 }
 
-function getComments($link){
-    $sql = "SELECT `author`, `comment` from comments";
+function getCommentsForArticle($link, $id){
+    $sql = "SELECT `author`, `comment` from comments WHERE `id`=$id";
     $result = mysqli_query($link, $sql);
 
     $comments = array();

@@ -20,6 +20,7 @@
 
 <body>
 <?php foreach ($articles as $article): ?>
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -66,7 +67,6 @@
             <p><?=$article['content']; ?></p>
 
             <hr>
-        <?php endforeach; ?>
             <!-- Comments Form -->
             <div class="card-body">
                 <h5 class="card-header">Коментарі</h5>
@@ -85,13 +85,13 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="3" name="comment"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="article_id" value="<?=$article['id']; ?>">Залишити коментар</button>
+                        <button type="submit" class="btn btn-primary" name="id" value="<?= $_GET['id']; ?>">Залишити коментар</button>
                     </form>
                 </div>
             </div>
             <?php endif; ?>
         </div>
-
+        <?php endforeach; ?>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
@@ -172,7 +172,4 @@
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
-
-<? endforeach; ?>
