@@ -1,22 +1,3 @@
-<?php
-
-if($_SERVER['REQUEST_METHOD'] === 'POST'):
-    session_start();
-
-    require_once('../functions.php');
-    $db = db_connect();
-
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $preview = $_POST['preview'];
-    $preview = readMore($preview);
-    $img = uploadImg('img');
-
-    add_post($db, $title, $content, $preview, $img);
-    header('Location:admin.php');
-endif;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,17 +29,14 @@ endif;
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="add_post.php">Додати запис</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="add_post.php">Вийти</a>
+                    <a class="nav-link" href="admin.php?action=logout">Вийти</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <div class="wrapper">
-<form class="form-horizontal" method="POST" action="add_post.php" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="admin.php" enctype="multipart/form-data">
     <div class="form-group">
         <label class="control-label col-sm-2" for="title">Заголовок:</label>
         <div class="col-sm-10">
@@ -87,7 +65,7 @@ CKEDITOR.replace( 'editor1' );
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" id="submit">Додати запис</button>
+            <button type="submit" class="btn btn-primary" id="submit" name="add_post">Додати запис</button>
         </div>
     </div>
     </form>

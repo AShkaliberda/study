@@ -75,8 +75,8 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
                 echo $review['comment'];
                 echo "<br>";
                 if($review['author'] === $_SESSION['login']){
-                    echo "<a href='admin/edit_comment.php?id=$review[id]'>Редагувати</a>";
-                    echo "<a href='admin/delete_comment.php?id=$review[id]'>Видалити</a>";
+                    echo "<a href='comment.php?edit=$review[id]'>Редагувати</a>";
+                    echo "<a href='comment.php?delete=$review[id]'>Видалити</a>";
                     echo "<br>";
                 }
 
@@ -87,9 +87,9 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
             <div class="card my-4">
                 <h5 class="card-header">Додати коментар:</h5>
                 <div class="card-body">
-                    <form method="POST" action="admin/add_comment.php">
+                    <form method="POST" action="comment.php">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="comment"></textarea>
+                            <textarea class="form-control" rows="3" name="add_comment"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="id" value="<?= $_GET['id']; ?>">Залишити коментар</button>
                     </form>

@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         <h1><?=$part['title']; ?></h1>
 
-    <form class="form-horizontal" method="POST" action="../admin/admin.php">
+    <form class="form-horizontal" method="POST" action="../admin.php">
         <div class="form-group">
             <label class="control-label col-sm-2" for="content">Додати коментар:</label>
             <div class="col-sm-10">

@@ -36,7 +36,7 @@
     </div>
 </nav>
 <div class="wrapper">
-    <form class="form-horizontal" method="POST" action="../admin/edit_comment.php">
+    <form class="form-horizontal" method="POST" action="comment.php">
         <div class="form-group">
             <label class="control-label col-sm-2" for="content">Редагувати коментар:</label>
             <div class="col-sm-10">
@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary" id="submit" name="comment_id" value="<?= $id; ?>">Зберегти зміни</button>
+                <button type="submit" class="btn btn-primary" id="submit" name="edit_comment" value="<?= $id; ?>">Зберегти зміни</button>
             </div>
         </div>
     </form>
