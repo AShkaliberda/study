@@ -14,7 +14,6 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/blog-home.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
 </head>
@@ -29,7 +28,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
             <?php navigation($menu); ?>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

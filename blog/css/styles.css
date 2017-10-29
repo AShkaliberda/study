@@ -47,3 +47,49 @@ body {
 footer .bg-dark {
     margin-top:100px;
 }
+
+.widget{
+    margin-top:100px!important;
+}
+
+.mb-4 {
+margin-top: 23px;
+}
+
+h1.mt-4 {
+    text-align:center;
+}
+
+.comment-card-body {
+    padding:0;
+    margin-bottom:20px;
+    border:1px solid rgba(0,0,0,.125);
+}
+
+.author, .comment {
+    margin-bottom: 0px;
+}
+
+ .author {
+     font-family: 'Microsoft Sans Serif', Tahoma, Arial, Verdana, Sans-Serif;
+     font-weight: bold;
+     margin-left:20px;
+     margin-top:20px;
+ }
+
+ .comment {
+     font-style: italic;
+     margin-left:25px;
+ }
+
+.action {
+    display: block;
+    width:300px;
+    margin-bottom: 55px;
+}
+ .comment-link {
+     display:block;
+     float:left;
+     margin-right:10px;
+     margin-left:25px;
+ }

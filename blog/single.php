@@ -21,10 +21,10 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
     <title>Сторінка запису</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -34,12 +34,16 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Головна</a>
+        <a class="navbar-brand" href="index.php">На головну</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <?php navigation($menu); ?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <?php navigation($menu); ?>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -67,19 +71,18 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
             <?php endforeach; ?>
             <hr>
             <!-- Comments Form -->
-            <div class="card-body">
+            <div class="comment-card-body">
                 <h5 class="card-header">Коментарі</h5>
             <?php foreach($reviews as $review):
-                echo $review['author'];
-                echo "<br>";
-                echo $review['comment'];
-                echo "<br>";
-                if($review['author'] === $_SESSION['login']){
-                    echo "<a href='comment.php?edit=$review[id]'>Редагувати</a>";
-                    echo "<a href='comment.php?delete=$review[id]'>Видалити</a>";
-                    echo "<br>";
-                }
+                echo"<p class='author'>$review[author]</p>
+                <p class='comment'>$review[comment]</p>";
 
+                if($review['author'] === $_SESSION['login']){
+                    echo "<div class='action'>
+                    <a class='comment-link' href='comment.php?edit=$review[id]'>Редагувати</a>
+                    <a class='comment-link' href='comment.php?delete=$review[id]'>Видалити</a>
+                    </div>";
+                }
             endforeach; ?>
             </div>
 
@@ -99,6 +102,7 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
         </div>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
+            <div class="widget">
 
             <!-- Search Widget -->
             <div class="card my-4">
@@ -157,7 +161,7 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
             </div>
 
         </div>
-
+        </div>
     </div>
     <!-- /.row -->
 
