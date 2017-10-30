@@ -6,7 +6,7 @@
  * Time: 11:50
  */
 require_once("connect.php");
-$id = (int)$_GET['id'];?>
+$id = (int)$_GET['id']; ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -68,7 +68,7 @@ $id = (int)$_GET['id'];?>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary" name="id" value="value="<?=$id; ?>">Зберегти зміни</button>
+                    <button type="submit" class="btn btn-primary" name="id" value="<?=$id; ?>">Зберегти зміни</button>
                 </div>
             </div>
         </form>
