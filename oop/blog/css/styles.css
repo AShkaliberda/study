@@ -1,0 +1,95 @@
+
+body {
+    padding-top: 0px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 0px;
+    }
+}
+
+.wrapper{
+    width:40%;
+    margin:5% auto;
+}
+
+.fixed-top {
+    position:relative;
+    margin-bottom: 25px;
+}
+
+.navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
+    padding-left:15px;
+}
+
+.navbar-brand {
+    margin-bottom:4px;
+}
+
+.navbar-toggler {
+    margin-right:10px;
+}
+
+
+.justify label {
+    min-width:200px;
+}
+
+.wrapper label {
+    min-width:300px;
+}
+
+.table thead th, .table th {
+    text-align: center;
+}
+
+footer .bg-dark {
+    margin-top:100px;
+}
+
+.widget{
+    margin-top:100px!important;
+}
+
+.mb-4 {
+margin-top: 23px;
+}
+
+h1.mt-4 {
+    text-align:center;
+}
+
+.comment-card-body {
+    padding:0;
+    margin-bottom:20px;
+    border:1px solid rgba(0,0,0,.125);
+}
+
+.author, .comment {
+    margin-bottom: 0px;
+}
+
+ .author {
+     font-family: 'Microsoft Sans Serif', Tahoma, Arial, Verdana, Sans-Serif;
+     font-weight: bold;
+     margin-left:20px;
+     margin-top:20px;
+ }
+
+ .comment {
+     font-style: italic;
+     margin-left:25px;
+ }
+
+.action {
+    display: block;
+    width:300px;
+    margin-bottom: 55px;
+}
+ .comment-link {
+     display:block;
+     float:left;
+     margin-right:10px;
+     margin-left:25px;
+ }
