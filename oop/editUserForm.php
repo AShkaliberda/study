@@ -5,25 +5,72 @@
  * Date: 26.10.2017
  * Time: 11:50
  */
-
 require_once("connect.php");
+$id = (int)$_GET['id'];?>
 
-$id = $_GET['id'];
-$first_name = $_GET['first_name'];
-$last_name = $_GET['last_name'];
-$patronymic = $_GET['patronymic'];
-$pass = $_GET['password'];
-$sex = $_GET['sex'];
-?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<?php foreach ($user->getUser($id) as $value): ?>
-<form method="post" action="info.php">
-    <input type="hidden" name="id" value="<?=$id; ?>">
-    <input type="text" name="first_name" value="<?=$value['first_name']; ?>"><br>
-    <input type="text" name="last_name" value="<?=$value['last_name']; ?>"><br>
-    <input type="text" name="patronymic" value="<?=$value['patronymic']; ?>"><br>
-    <input type="text" name="pass" value="<?=$value['pass']; ?>"><br>
-    <input type="text" name="sex" value="<?=$value['sex']; ?>"><br>
-    <input type="submit" name="save">
-</form>
-<?php endforeach; ?>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Реєстрація</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/styles.css" rel="stylesheet">
+
+    </head>
+
+<body>
+    <div class="wrapper">
+    <?php foreach ($user->getUser($id) as $value): ?>
+        <form class="form-horizontal" method="post" action="info.php">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="first">Firstname:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="first_name" id="first" class="form-control" value="<?=$value['first_name']; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="last">Lastname:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="last_name" id="last" class="form-control" value="<?=$value['last_name']; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="patronymic">Patronymic:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="patronymic" id="patronymic" class="form-control" value="<?=$value['patronymic']; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pass">Password:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="pass" id="pass" class="form-control" value="<?=$value['pass']; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="sex">Sex:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="sex" class="form-control" value="<?=$value['sex']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" name="id" value="value="<?=$id; ?>">Зберегти зміни</button>
+                </div>
+            </div>
+        </form>
+    <?php endforeach; ?>
+    </div>

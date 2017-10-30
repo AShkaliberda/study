@@ -36,7 +36,7 @@ class User {
     }
 
     function getUser($id){
-        $sql = "SELECT first_name, last_name, patronymic, pass, sex FROM users WHERE id='$id'";
+        $sql = "SELECT first_name, last_name, patronymic, pass, sex FROM users WHERE id=$id";
         $res = $this->_db->query($sql);
         if (!$res):
             return false;
@@ -64,7 +64,7 @@ class User {
                                  last_name = '$last_name',
                                  patronymic='$patronymic',
                                  pass='$pass',
-                                 sex='$sex' WHERE id='$id'";
+                                 sex='$sex' WHERE id=$id";
         return $this->_db->exec($sql);
     }
 
