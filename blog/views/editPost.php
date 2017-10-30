@@ -62,7 +62,7 @@ CKEDITOR.replace( 'editor1' );
     <div class="form-group">
         <div class="col-sm-10">
             <input name="img" type="file">
-            <input type="hidden" name="image" value="<?= $change['img']; ?>">
+            <input type="hidden" name="image" value="<?=$change['img']; ?>">
         </div>
     </div>
     <div class="form-group">

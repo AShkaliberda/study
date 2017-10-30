@@ -12,11 +12,12 @@ function uploadImg($field){
         return false;
     }
     if(is_uploaded_file($_FILES[$field]['tmp_name'])){
-        $res = move_uploaded_file($_FILES[$field]['tmp_name'], 'img/'. $_FILES[$field]['name']);
+        $filename =  time().'.'. pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION);
+        $res = move_uploaded_file($_FILES[$field]['tmp_name'], 'img/'. $filename);
         if(!$res){
             return false;
         }else{
-            return 'img/'. $_FILES[$field]['name'];
+            return 'img/'. $filename;
         }
     }
     return false;

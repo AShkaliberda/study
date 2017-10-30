@@ -6,7 +6,7 @@
         <?php foreach ($posts as $post):?>
             <!-- Blog Post -->
             <div class="card mb-4">
-                <a href="single.php?id=<?= $post['id']; ?>"><img class="card-img-top" src="<?=$post['img']; ?>" alt="Card image cap" width="750px" height="300px"></a>
+                <a href="single.php?id=<?= $post['id']; ?>"><img class="card-img-top" src="<?=$post['img']; ?>" alt="Card image cap" width="750px" height="400px"></a>
                 <div class="card-body">
                     <h2 class="card-title"><?=$post['title'] ?></h2>
                     <p class="card-text"><?=$post['preview']; ?></p>
