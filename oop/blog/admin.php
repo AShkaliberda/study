@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once('functions.php');
 require_once('config.php');
@@ -25,8 +24,8 @@ if($_SESSION['name'] === 'admin'):
         $title = $_POST['title'];
         $content = $_POST['content'];
         $preview = $_POST['preview'];
-        $preview = readMore($preview);
-        $img = uploadImg('img');
+        $preview = $post->preview($preview);
+        $img = $post->uploadImg('img');
 
         $post->addPost($db, $title, $content, $preview, $img);
         header('Location:admin.php');
@@ -40,15 +39,15 @@ if($_SESSION['name'] === 'admin'):
 
     if(!empty($_POST['edit_post'])):
         $img = $_POST['image'];
-            if(!empty($_FILES)):
-                $img = uploadImg('img');
+            if(!empty($_FILES['img']['name'])):
+                $img = $post->uploadImg('img');
             endif;
         $post->editPost($db, $_POST['title'], $_POST['content'], $_POST['preview'], $img, (int)$_POST['edit_post']);
         header('Location:admin.php');
     endif;
 
     if(!empty($_POST['delete'])):
-        delete_post($db, (int)$_POST['delete']);
+        $post->deletePost($db, (int)$_POST['delete']);
         header('Location:admin.php');
     endif;
 

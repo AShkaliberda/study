@@ -15,8 +15,7 @@ $content = 'Content';
 $preview = 'Preview';
 $img = 'path';
 
-$post->add($db, $title, $content, $preview, $img);
-$articles = $post->getAll($db);
+$post->getPost($db, $id);
 
 foreach($articles as $article ):
     echo $article['title'];

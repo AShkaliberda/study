@@ -8,6 +8,6 @@ require_once('config.php');
 $post = new Post();
 $posts = $post->getAllPosts($db);
 
-require_once('views/header.php');
+require('views/header.php');
 require_once('views/main.php');
 require_once('views/footer.php');

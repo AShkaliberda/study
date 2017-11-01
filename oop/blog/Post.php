@@ -16,8 +16,37 @@ class Post
         $stmt->bindParam(':preview', $preview, PDO::PARAM_STR);
         $stmt->bindParam(':img', $img, PDO::PARAM_STR);
         $stmt->execute();
+    }
 
-        echo "Пост добавлен успешно";
+    function editPost($db, $title, $content, $preview, $img, $id){
+        $sql = "UPDATE articles SET `title` = :title, `content` = :content, `preview` = :preview, `img`=:img WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindparam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':preview', $preview);
+        $stmt->bindParam(':img', $img);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
+    function deletePost($db, $id){
+        $sql = "DELETE FROM articles WHERE `id` = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
+    function getPost($db, $id){
+        $sql = "SELECT `id`, `title`, `content`, `preview`, `img` FROM articles WHERE `id`=:id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $data = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = $row;
+        }
+        return $data;
     }
 
     function getAllPosts($db){
@@ -35,28 +64,24 @@ class Post
         return $posts;
     }
 
-    function editPost($db, $title, $content, $preview, $img, $id){
-        $sql = "UPDATE articles SET `title` = :title, `content` = :content, `preview` = :preview, `img`=:preview WHERE id = :id";
-        $stmt = $db->prepare($sql);
-        $stmt->bindparam(':title', $title);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':preview', $preview);
-        $stmt->bindParam(':img', $img);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+    function preview($text, $len=200){
+        return mb_substr($text, 0, $len);
     }
 
-    function getPost($db, $id){
-        $sql = "SELECT `id`, `title`, `content`, `preview`, `img` FROM articles WHERE `id`=:id";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $res = $stmt->execute();
-
-        $data = array();
-        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-            $data[] = $row;
+    function uploadImg($field){
+        if(0 != $_FILES[$field]['error']){
+            return false;
         }
-        return $data;
+        if(is_uploaded_file($_FILES[$field]['tmp_name'])){
+            $filename =  time().'.'. pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION);
+            $res = move_uploaded_file($_FILES[$field]['tmp_name'], 'img/'. $filename);
+            if(!$res){
+                return false;
+            }else{
+                return 'img/'. $filename;
+            }
+        }
+        return false;
     }
 
 }
