@@ -2,10 +2,12 @@
 
 session_start();
 require_once('functions.php');
-$db = db_connect();
+require_once('config.php');
+require_once('Post.php');
 
-$posts = show_posts($db);
+$post = new Post();
 
+$posts = $post->getAllPosts($db);
 
 if($_GET['action'] === 'logout'):
     session_destroy();
@@ -26,12 +28,12 @@ if($_SESSION['name'] === 'admin'):
         $preview = readMore($preview);
         $img = uploadImg('img');
 
-        add_post($db, $title, $content, $preview, $img);
+        $post->addPost($db, $title, $content, $preview, $img);
         header('Location:admin.php');
     endif;
 
     if(!empty($_POST['edit'])):
-        $changes = select_data($db, (int)$_POST['edit']);
+        $changes = $post->getPost($db, (int)$_POST['edit']);
         include('views/editPost.php');
         exit;
     endif;
@@ -41,7 +43,7 @@ if($_SESSION['name'] === 'admin'):
             if(!empty($_FILES)):
                 $img = uploadImg('img');
             endif;
-        edit_post($db, $_POST['title'], $_POST['content'], $_POST['preview'], $img, (int)$_POST['edit_post']);
+        $post->editPost($db, $_POST['title'], $_POST['content'], $_POST['preview'], $img, (int)$_POST['edit_post']);
         header('Location:admin.php');
     endif;
 

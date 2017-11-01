@@ -1,11 +1,12 @@
 <?php
 session_start();
+require_once('Post.php');
 require_once('functions.php');
 require_once('menu.php');
-require_once('DB.php');
+require_once('config.php');
 
-$db = new DB();
-$posts = show_posts($db);
+$post = new Post();
+$posts = $post->getAllPosts($db);
 
 require_once('views/header.php');
 require_once('views/main.php');
