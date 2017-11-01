@@ -14,16 +14,7 @@ class Post
     protected $preview;
     protected $img;
 
-    function __construct($id, $title, $content,$preview,$img)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->content = $content;
-        $this->preview = $preview;
-        $this->img = $img;
-    }
-
-    function add($db){
+    function add($db, ){
         $sql = 'INSERT INTO articles(`title`, `content`, `preview`, `img`) VALUES(:title,:content,:preview, :img )';
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':title', $this->title);
