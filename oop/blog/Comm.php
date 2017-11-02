@@ -41,7 +41,7 @@ class Comm
     }
 
     function deleteComment($db, $id) {
-        $sql = "DELETE FROM articles WHERE `id` = :id";
+        $sql = "DELETE FROM comments WHERE `id` = :id";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

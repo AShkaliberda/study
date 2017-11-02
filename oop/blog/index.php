@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('Post.php');
-require_once('functions.php');
 require_once('menu.php');
 require_once('config.php');
 

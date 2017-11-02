@@ -6,16 +6,17 @@
  * Time: 23:15
  */
 session_start();
-require_once('functions.php');
-$db = db_connect();
+require_once('config.php');
+require_once('User.php');
 
-$checkUser = validation($db);
+$user = new User();
+$user->validation($db);
 
-    if($checkUser === 'admin'):
+    if($user->role === 'admin'):
         $_SESSION['name'] = 'admin';
         header('Location:index.php');
 
-    elseif($checkUser === 'user'):
+    elseif($user->role === 'user'):
         $_SESSION['name'] = 'user';
         header("Location:index.php");
     else:
