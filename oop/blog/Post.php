@@ -5,7 +5,6 @@
  * Date: 30.10.2017
  * Time: 22:36
  */
-
 class Post
 {
     function addPost($db, $title, $content, $preview, $img){

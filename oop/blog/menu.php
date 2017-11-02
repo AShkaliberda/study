@@ -17,3 +17,10 @@ elseif($_SESSION['name'] === 'user'):
 else:
     $menu["authorization.php"] = "Авторизація";
 endif;
+
+function navigation (array $arr){
+    foreach($arr as $key => $value){
+        echo "<ul class='navbar-nav'>
+                <li class='nav-item'><a class='nav-link' href=$key>$value</a></li>";
+    }
+}

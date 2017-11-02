@@ -1,11 +1,15 @@
 <?php
 session_start();
-require_once('functions.php');
+require_once('config.php');
 require_once('menu.php');
-$db = db_connect();
+require_once('Post.php');
+require_once('Comm.php');
 
-$articles = select_data($db, (int)$_GET['id']);
-$reviews = getCommentsForArticle($db, (int)$_GET['id']);
+$post = new Post();
+$comm = new Comm();
+
+$articles = $post->getPost($db, (int)$_GET['id']);
+$reviews = $comm->getCommentsForArticle($db, (int)$_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -92,9 +96,9 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
                 <div class="card-body">
                     <form method="POST" action="comment.php">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="add_comment"></textarea>
+                            <textarea class="form-control" rows="3" name="add_comment" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="id" value="<?= $_GET['id']; ?>">Залишити коментар</button>
+                        <button type="submit" class="btn btn-primary" name="id" value="<?=$_GET['id']; ?>">Залишити коментар</button>
                     </form>
                 </div>
             </div>
@@ -177,8 +181,8 @@ $reviews = getCommentsForArticle($db, (int)$_GET['id']);
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>

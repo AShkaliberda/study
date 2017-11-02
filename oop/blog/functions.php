@@ -94,13 +94,6 @@ function delete_post($link, $id){
     mysqli_stmt_close($stmt);
 }
 
-function navigation (array $arr){
-    foreach($arr as $key => $value){
-        echo "<ul class='navbar-nav'>
-                <li class='nav-item'><a class='nav-link' href=$key>$value</a></li>";
-    }
-}
-
 function edit_post($link, $title, $content, $preview, $img, $id){
     $sql = "UPDATE articles SET `title` = ?, `content` = ?, `preview` = ?, `img`=? WHERE id = ?";
     $stmt = mysqli_prepare($link, $sql);

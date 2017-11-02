@@ -6,20 +6,21 @@
  * Time: 22:29
  */
 require_once('Post.php');
+require_once('Comm.php');
 require_once ('config.php');
 var_dump($db);
 $post = new Post();
+$comm = new Comm();
 
-$title = 'Title';
-$content = 'Content';
-$preview = 'Preview';
-$img = 'path';
+$user_id = 1;
+$author = 'admin';
+$article_id = 14;
+$comment = 'dfasdfasd';
 
-$post->getPost($db, $id);
+$comm->addComment($db, $article_id, $comment);
 
-foreach($articles as $article ):
-    echo $article['title'];
-endforeach;
+
+
 
 
 
