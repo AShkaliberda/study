@@ -8,7 +8,7 @@
  */
 class Test
 {
-public function getAllPosts($db){
+    public function getAllTests($db){
         $sql = "SELECT `id`, `name`, `description` FROM tests";
         $res = $db->query($sql);
 
@@ -22,4 +22,5 @@ public function getAllPosts($db){
         }
         return $posts;
     }
+
 }

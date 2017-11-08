@@ -8,6 +8,7 @@
  */
 class User
 {
+    public $id;
     public function __construct($db, $login, $password){
         $sql = "INSERT INTO users(`login`, `password`) VALUES (:login, :pass)";
         $stmt = $db->prepare($sql);
@@ -36,7 +37,6 @@ class User
         foreach($rows as $row):
             if($login === $row['login'] && $password === $row['password']):
                 $_SESSION['id'] = (int)$row['id'];
-                $_SESSION['login'] = $row['login'];
                 return $row['role'];
             endif;
         endforeach;

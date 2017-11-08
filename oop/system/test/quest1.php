@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,13 +26,13 @@
 
     <form class="form-horizontal" method="POST" action="quest2.php">
         <div class="checkbox">
-            <label><input type="checkbox" name="one" value="Расмус Лердорф"><span>Расмус Лердорф</span></label>
+            <label><input type="checkbox" name="one" value="Расмус Лердорф"><span> Расмус Лердорф</span></label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" name="two" value="Лінус Торвальдс"><span>Лінус Торвальдс</span></label>
+            <label><input type="checkbox" name="two" value="Лінус Торвальдс"><span> Лінус Торвальдс</span></label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" name="three" value="Брендан Эйх"><span>Брендан Эйх</span></label>
+            <label><input type="checkbox" name="three" value="Брендан Эйх"><span> Брендан Эйх</span></label>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
