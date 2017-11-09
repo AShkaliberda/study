@@ -20,11 +20,11 @@
 
 <body>
 <div class="wrapper">
+    <?php foreach($questions as $question): ?>
 
     <h3><?=$question['title']; ?></h3>
 
     <form class="form-horizontal" method="POST" action="quest2.php">
-        <?php foreach($questions as $question): ?>
         <div class="checkbox">
             <label><input type="checkbox" name="answer" value="Расмус Лердорф"><span> Расмус Лердорф</span></label>
         </div>

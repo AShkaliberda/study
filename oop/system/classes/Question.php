@@ -14,10 +14,8 @@ class Question
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        $data = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $data[] = $row;
+        if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            yield $row;
         }
-        return $data;
     }
 }

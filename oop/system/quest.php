@@ -14,6 +14,4 @@ $obj = new Question();
 $obj2 = new Answer();
 
 $questions = $obj->getQuestions($db, (int)$_GET['id']);
-echo "<pre>";
-print_r($questions);die;
 include('views/test.php');
