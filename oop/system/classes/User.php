@@ -8,6 +8,7 @@
  */
 class User
 {
+<<<<<<< Updated upstream
     public $id;
     public function __construct($db, $login, $password){
         $sql = "INSERT INTO users(`login`, `password`) VALUES (:login, :pass)";
@@ -22,6 +23,9 @@ class User
     }
 
     public static function getUserInfo($db, $login, $password) {
+=======
+    public static function checkRole($db, $login, $password) {
+>>>>>>> Stashed changes
 
         $sql = "SELECT `id`, `login`, `password`, `role` FROM users WHERE `login` = :login";
         $stmt = $db->prepare($sql);
@@ -37,6 +41,10 @@ class User
         foreach($rows as $row):
             if($login === $row['login'] && $password === $row['password']):
                 $_SESSION['id'] = (int)$row['id'];
+<<<<<<< Updated upstream
+=======
+                $_SESSION['login'] = $row['login'];
+>>>>>>> Stashed changes
                 return $row['role'];
             endif;
         endforeach;
@@ -54,4 +62,21 @@ class User
         }
         return true;
     }
+<<<<<<< Updated upstream
+=======
+
+    public function saveUser($db, $login, $password, $email){
+        $sql = "INSERT INTO users(`login`, `password`, `email`) VALUES (:login, :pass, :email)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':pass', $password);
+        $stmt->bindParam(':email', $email);
+        try {
+            $stmt->execute();
+        }catch(PDOException $e){
+            echo 'Помилка в запиті: ' . $e->getMessage();
+        }
+    }
+
+>>>>>>> Stashed changes
 }

@@ -21,10 +21,17 @@ $_SESSION['answer3'] = $answer3;
     <title>Онлайн-тестування з основ PHP</title>
 
     <!-- Bootstrap core CSS -->
+<<<<<<< Updated upstream
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../css/styles.css" rel="stylesheet">
+=======
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/styles.css" rel="stylesheet">
+>>>>>>> Stashed changes
 
 </head>
 

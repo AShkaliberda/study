@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +15,17 @@
     <title>Онлайн-тестування з основ PHP</title>
 
     <!-- Bootstrap core CSS -->
+<<<<<<< Updated upstream
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../css/styles.css" rel="stylesheet">
+=======
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/styles.css" rel="stylesheet">
+>>>>>>> Stashed changes
 
 </head>
 
@@ -26,6 +36,7 @@
 
     <form class="form-horizontal" method="POST" action="quest2.php">
         <div class="checkbox">
+<<<<<<< Updated upstream
             <label><input type="checkbox" name="one" value="Расмус Лердорф"><span> Расмус Лердорф</span></label>
         </div>
         <div class="checkbox">
@@ -33,6 +44,15 @@
         </div>
         <div class="checkbox">
             <label><input type="checkbox" name="three" value="Брендан Эйх"><span> Брендан Эйх</span></label>
+=======
+            <label><input type="checkbox" name="one" value="Расмус Лердорф"><span>Расмус Лердорф</span></label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" name="two" value="Лінус Торвальдс"><span>Лінус Торвальдс</span></label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" name="three" value="Брендан Эйх"><span>Брендан Эйх</span></label>
+>>>>>>> Stashed changes
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
