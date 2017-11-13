@@ -14,4 +14,10 @@ $obj = new Question();
 $obj2 = new Answer();
 
 $questions = $obj->getQuestions($db, (int)$_GET['id']);
+$answers = $obj2->getAnswers($db, (int)$questions['id']);
+echo "<pre>";
+print_r($questions);
+echo "<pre>";
+print_r($answers);
+die;
 include('views/test.php');

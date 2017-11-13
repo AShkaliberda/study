@@ -20,13 +20,12 @@
 
 <body>
 <div class="wrapper">
-    <?php foreach($questions as $question): ?>
-
-    <h3><?=$question['title']; ?></h3>
+    <h3><?=$questions['title']; ?></h3>
 
     <form class="form-horizontal" method="POST" action="quest2.php">
+        <?php foreach($answers as $answer): ?>
         <div class="checkbox">
-            <label><input type="checkbox" name="answer" value="Расмус Лердорф"><span> Расмус Лердорф</span></label>
+            <label><input type="checkbox" name="answer" value="<?=$answer['points']; ?>"><span> <?=$answer['text']; ?></span></label>
         </div>
         <?endforeach; ?>
         <div class="form-group">
