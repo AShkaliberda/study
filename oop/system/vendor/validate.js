@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
+<<<<<<< Updated upstream
   $('#email').blur(function(){
+=======
+  $('#email').blur(function(){//срабатывает при расфокусировке
+>>>>>>> Stashed changes
       var value = $(this).val();
 
       $.ajax({
