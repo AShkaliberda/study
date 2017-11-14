@@ -9,14 +9,22 @@
 class Question
 {
     public function getQuestions($db, $id){
-        $sql = "SELECT `id`, `title` FROM questions WHERE `test_id`=:id";
+        if(!$id) return;
+
+        $sql = "SELECT q.id, q.title, q.test_id, a.id, a.text, a.question_id, a.points
+                FROM questions q
+                LEFT JOIN answers a
+                  ON q.id = a.question_id
+                   WHERE q.test_id = :id";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        $data = [];
+        $data = null;
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $data[] = $row;
+            if(!$row['question_id']) return;
+            $data[$row['question_id']][0] = $row['title'];
+            $data[$row['question_id']][$row['id']] = $row['text'];
         }
         return $data;
     }

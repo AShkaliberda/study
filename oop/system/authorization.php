@@ -30,10 +30,6 @@ ini_set('locale', 'UTF-8');
 
 <body>
 <div class="wrapper">
-<<<<<<< Updated upstream
-=======
-    <h2></h2>>
->>>>>>> Stashed changes
     <form class="form-horizontal" method="POST" action="auth.php">
         <div class="form-group">
             <label class="control-label col-sm-2" for="login">Login:</label>

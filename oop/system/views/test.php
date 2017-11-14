@@ -20,18 +20,19 @@
 
 <body>
 <div class="wrapper">
-    <h3><?=$questions['title']; ?></h3>
+    <?php foreach($questions as $question): ?>
+    <h3><?=$question[0]; ?></h3>
 
     <form class="form-horizontal" method="POST" action="quest2.php">
-        <?php foreach($answers as $answer): ?>
         <div class="checkbox">
             <label><input type="checkbox" name="answer" value="<?=$answer['points']; ?>"><span> <?=$answer['text']; ?></span></label>
         </div>
-        <?endforeach; ?>
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary" id="submit">Далі</button>
             </div>
         </div>
     </form>
+    <?endforeach; ?>
 </div>

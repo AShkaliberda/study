@@ -15,4 +15,3 @@ $tests = $obj->getAllTests($db);
 require_once('views/header.php');
 require_once('views/main.php');
 require_once('views/footer.php');
-

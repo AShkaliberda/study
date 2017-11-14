@@ -48,15 +48,6 @@
             </div>
         </div>
         <div class="form-group">
-<<<<<<< Updated upstream
-=======
-            <label class="control-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-10">
-                <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required>
-            </div>
-        </div>
-        <div class="form-group">
->>>>>>> Stashed changes
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary" name="register">Зарєеструватися</button>
             </div>

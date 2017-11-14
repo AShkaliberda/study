@@ -8,16 +8,12 @@
 session_start();
 require_once('config.php');
 require_once('classes/Question.php');
-require_once('classes/Answer.php');
 
 $obj = new Question();
-$obj2 = new Answer();
 
 $questions = $obj->getQuestions($db, (int)$_GET['id']);
-$answers = $obj2->getAnswers($db, (int)$questions['id']);
 echo "<pre>";
-print_r($questions);
-echo "<pre>";
-print_r($answers);
-die;
+//var_dump($questions);
+//die;
+
 include('views/test.php');
